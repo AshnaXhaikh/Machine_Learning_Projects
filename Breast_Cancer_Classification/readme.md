@@ -36,6 +36,32 @@ The goal was to train machine learning models for predicting breast cancer diagn
   * Explain the prediction by showing the **most influential features**
   * Visualize how each feature contributes positively or negatively to the prediction
 
+
+## 🧩 LIME Function in This Project
+
+In this notebook, the **LIME** function is used to explain **why** the Random Forest model predicted a specific label for a given breast cancer sample.
+
+* **`LimeTabularExplainer`** was initialized with:
+
+  * Training features (`X_train`)
+  * Feature names from the dataset
+  * Class names: `"Malignant"` and `"Benign"`
+  * `mode='classification'`
+
+* **`explainer.explain_instance()`** was called on a **single test sample**, passing:
+
+  * The feature values for that sample
+  * The Random Forest model’s `.predict_proba` method
+  * Number of features to show in the explanation
+
+* The output is a **local interpretation** showing which features contributed most to the model’s prediction and whether they pushed toward `"Malignant"` or `"Benign"`.
+
+Example:
+
+> If `mean radius` was high and `smoothness mean` was above the average, LIME might show both as strong positive contributors to predicting `"Malignant"`.
+
+---
+
 ## 📈 Results
 
 * **Decision Tree**: Good performance, easy to interpret without additional tools.
